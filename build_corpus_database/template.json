@@ -1,0 +1,20 @@
+{
+  "title": "",
+  "_summary": "备注：当summary缺失时，可临时取title作为summary",
+  "summary": "",
+  "text": "",
+  "archive": "",
+  "date": "",
+  "density": "",
+  "coverage": "",
+  "compression": "",
+  "compression_bin": "",
+  "coverage_bin": "",
+  "density_bin": "",
+  "summary_len": "",
+  "text_len": "",
+  "_dataset_src": "备注：如果取自公开数据集，在此字段内加入数据集来源信息",
+  "dataset_src": "",
+  "_domain": "备注：新闻所在领域",
+  "domain": ""
+}

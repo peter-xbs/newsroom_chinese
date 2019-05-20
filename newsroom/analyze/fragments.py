@@ -6,8 +6,9 @@ import random as _random
 
 from collections import namedtuple as _namedtuple
 
-import spacy as _spacy
-from os import system as _system
+# import spacy as _spacy
+from snownlp import SnowNLP
+# from os import system as _system
 
 ################################################################################
 
@@ -15,23 +16,7 @@ class Fragments(object):
 
     Match = _namedtuple("Match", ("summary", "text", "length"))
 
-    @classmethod
-    def _load_model(cls):
-
-        if not hasattr(cls, "_en"):
-
-            try:
-
-                cls._en = _spacy.load("en_core_web_sm")
-
-            except:
-
-                _system("python -m spacy download en_core_web_sm")
-                cls._en = _spacy.load("en_core_web_sm")
-
     def __init__(self, summary, text, tokenize = True, case = False):
-
-        self._load_model()
 
         self._tokens = tokenize
 
@@ -47,19 +32,16 @@ class Fragments(object):
     def _tokenize(self, text):
 
         """
-
-        Tokenizes input using the fastest possible SpaCy configuration.
-        This is optional, can be disabled in constructor.
-
+        snownlp
         """
+        tokenizer = SnowNLP(text)
 
-        return self._en(text, disable = ["tagger", "parser", "ner", "textcat"])
+        return tokenizer.words
 
 
     def _normalize(self, tokens, case = False):
 
         """
-
         Lowercases and turns tokens into distinct words.
 
         """
@@ -276,7 +258,6 @@ class Fragments(object):
     def _htmltokens(self, tokens):
 
         """
-
         Carefully process tokens to handle whitespace and HTML characters.
 
         """
